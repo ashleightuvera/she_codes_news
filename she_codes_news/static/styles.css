@@ -52,3 +52,26 @@ a {
 a, p {
     font-family: monospace;
 }
+
+form {
+    background-color: pink;
+    border: black solid 2px;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+  
+.button {
+    width: 100%;
+    padding: 10px;
+    background-color:purple;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+  
+.button[type="submit"]:hover {
+    background-color: skyblue;
+}
