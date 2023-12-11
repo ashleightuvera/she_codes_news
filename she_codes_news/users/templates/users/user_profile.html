@@ -1,0 +1,11 @@
+<!-- users/templates/users/user_profile.html -->
+{% extends "base.html" %}
+{% block content %}
+    <h2>{{ user.username }}'s Profile</h2>
+    <p>Bio: {{ profile.bio }}</p>
+    {% if profile.profile_picture %}
+        <img src="{{ profile.profile_picture.url }}" alt="{{ user.username }}'s Profile Picture">
+    {% else %}
+        <p>No profile picture available.</p>
+    {% endif %}
+{% endblock %}
