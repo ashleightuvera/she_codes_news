@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- users/templates/users/createAccount.html -->
 
 {% extends 'base.html' %}
@@ -9,4 +10,17 @@
         {{ form.as_p }}
         <button type="submit">Create Account</button>
     </form>
+=======
+<!-- users/templates/users/createAccount.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Create Account</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Account</button>
+    </form>
+>>>>>>> 03878bfb9afb741b2115699bdf46fea5f6e77e72
 {% endblock %}
