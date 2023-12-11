@@ -60,6 +60,15 @@ form {
     margin: 0 auto;
     padding: 20px;
 }
+
+form text{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
   
 .button {
     width: 100%;

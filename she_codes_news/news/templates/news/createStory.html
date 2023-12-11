@@ -4,6 +4,7 @@
     <a href="{% url 'news:index' %}">Home</a>
     {% if request.user.is_authenticated %}
         <form action="" method="post">
+            <h3>Add new story</h3>
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="Submit" class="button">
