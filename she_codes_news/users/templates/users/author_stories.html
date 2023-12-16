@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Author Stories</title>
+</head>
+<body>
+    <h1>Author Stories</h1>
+
+    <form method="get" action="{% url 'author-stories' %}">
+        <input type="text" name="q" value="{{ query }}" placeholder="Search by Author">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if authors %}
+        <ul>
+            {% for author in authors %}
+                <li>
+                    <a href="{% url 'author-stories-detail' username=author.username %}">
+                        {{ author.username }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No authors found.</p>
+    {% endif %}
+</body>
+</html>
