@@ -8,6 +8,13 @@
 {% block content %}
     <br>
     <a href="{% url 'news:newStory' %}">Write New Story</a>
+    
+    <form method="get" action="{% url 'news:index' %}">
+        <label for="author">Search by author:</label>
+        <input type="text" id="author" name="author" placeholder="Enter author's username">
+        <button type="submit">Search</button>
+    </form>
+    
     <h2>Latest News</h2>
 
         <div id="latest-stories">

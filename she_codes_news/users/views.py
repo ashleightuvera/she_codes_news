@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 from django.urls import reverse_lazy
+from django.views import generic
 from django.views.generic import CreateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-
-from .models import CustomUser, UserProfile
+from .models import CustomUser, Story
 from .forms import CustomUserCreationForm
 
 class CreateAccountView(CreateView):
@@ -21,18 +20,25 @@ class UserProfileView(LoginRequiredMixin, DetailView):
         return self.request.user
 
 def user_profile_view(request):
-    profile = UserProfile.objects.get_or_create(user=request.user)[0]
+    profile = CustomUser.objects.get_or_create(user=request.user)[0]
     return render(request, 'users/profile.html', {'profile': profile})
-=======
-from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
-from django.views import generic
 
-from .models import CustomUser
-from .forms import CustomUserCreationForm
+class IndexView(generic.ListView):
+    template_name = 'news/index.html'
+    context_object_name = "all_stories"
 
-class CreateAccountView(CreateView):
-    form_class = CustomUserCreationForm
-    success_url = reverse_lazy('login')
-    template_name = 'users/createAccount.html'
->>>>>>> 03878bfb9afb741b2115699bdf46fea5f6e77e72
+    def get_queryset(self):
+        author_name = self.request.GET.get('author', None)
+        if author_name is not None:
+            return Story.objects.filter(author__username=author_name)
+        else:
+            return Story.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        author_name = self.request.GET.get('author', None)
+        if author_name is None:
+            context['latest_stories'] = Story.objects.all().order_by('-created_at')[:5]
+        else:
+            context['filtering'] = True
+        return context
