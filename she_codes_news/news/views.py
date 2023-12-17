@@ -32,3 +32,23 @@ class AddStoryView(generic.CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+class EditStoryView(generic.edit.UpdateView):
+    model = NewsStory
+    form_class = StoryForm
+    template_name = 'news/edit_story.html'
+    context_object_name = 'story'
+
+    def get(self, request, *args, **kwargs):
+        print("EditStoryView GET method executed")
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        print("EditStoryView POST method executed")
+        return super().post(request, *args, **kwargs)
+
+class DeleteStoryView(generic.DeleteView):
+    model = NewsStory
+    template_name = 'news/delete_story.html'
+    context_object_name = 'story'
+    success_url = reverse_lazy('news:index')

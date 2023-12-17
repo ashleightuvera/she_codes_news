@@ -9,7 +9,7 @@ from .forms import CustomUserCreationForm
 class CreateAccountView(CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')
-    template_name = 'users/create_account.html'
+    template_name = 'users/createAccount.html'
 
 class UserProfileView(LoginRequiredMixin, DetailView):
     model = CustomUser
